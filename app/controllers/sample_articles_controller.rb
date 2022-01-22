@@ -65,6 +65,6 @@ class SampleArticlesController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def sample_article_params
-      params.fetch(:sample_article, {})
+      params.require(:sample_article).permit(:title, :content)
     end
 end
