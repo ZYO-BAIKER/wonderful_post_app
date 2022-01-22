@@ -49,3 +49,4 @@ end
 gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 gem 'rails-i18n' # 日本語化のGem
 gem 'devise'
+gem "kaminari"
