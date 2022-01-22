@@ -27,16 +27,15 @@ class ArticlesController < ApplicationController
 
   def update
     if @article.update(article_params)
-      @article.save!
-      redirect_to incompanies_path
+      redirect_to @article, notice: "Article was successfully updated."
     else
-      render action: :edit
+      render :edit, status: :unprocessable_entity
     end
   end
 
   def destroy
     @article.destroy!
-    redirect_to incompanies_path
+    redirect_to articles_url, notice: "Article was successfully destroyed."
   end
 
   private
