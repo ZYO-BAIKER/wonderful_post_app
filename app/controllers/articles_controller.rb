@@ -1,4 +1,5 @@
 class ArticlesController < ApplicationController
+  skip_before_action :authenticate_user!, only: [:index, :show ]
   before_action :set_article, only: [:show,:edit,:update,:destroy]
 
   def index
@@ -45,6 +46,6 @@ class ArticlesController < ApplicationController
     end
 
     def article_params
-      params.require(:article).permit(:title, :content)
+      params.require(:article).permit(:title, :content).merge(user_id: current_user.id)
     end
 end
