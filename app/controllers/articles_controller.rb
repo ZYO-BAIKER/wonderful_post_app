@@ -3,7 +3,7 @@ class ArticlesController < ApplicationController
   before_action :set_article, only: [:show,:edit,:update,:destroy]
 
   def index
-    articles = Article.all.includes(:user)
+    articles = Article.all.includes(:user, :tags)
     articles = articles.where("title LIKE ?", "%#{params[:title]}%") if params[:title].present?
     @articles = articles.page(params[:page])
   end
@@ -48,6 +48,6 @@ class ArticlesController < ApplicationController
     end
 
     def article_params
-      params.require(:article).permit(:title, :content).merge(user_id: current_user.id)
+      params.require(:article).permit(:title, :content, tag_ids:[]).merge(user_id: current_user.id)
     end
 end
