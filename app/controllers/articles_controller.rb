@@ -3,7 +3,9 @@ class ArticlesController < ApplicationController
   before_action :set_article, only: [:show,:edit,:update,:destroy]
 
   def index
-    @articles = Article.all.includes(:user).page(params[:page])
+    articles = Article.all.includes(:user)
+    articles = articles.where("title LIKE ?", "%#{params[:title]}%") if params[:title].present?
+    @articles = articles.page(params[:page])
   end
 
   def new
