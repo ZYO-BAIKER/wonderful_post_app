@@ -15,3 +15,6 @@ tags.each { |tag| Tag.find_or_create_by!(name: tag) }
     end
   end
 end
+
+# user 1-多 article
+# article 多-多 tag
